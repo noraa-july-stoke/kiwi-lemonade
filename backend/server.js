@@ -12,7 +12,6 @@ const router = new Router()
 
 mongoose.connect(process.env.DATABASE_URL)
 
-
 app.use(Helmet())
 
 if (process.env.NODE_ENV === 'development') {
