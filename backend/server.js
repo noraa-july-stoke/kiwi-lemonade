@@ -35,5 +35,6 @@ app.use(respond())
 require('./routes')(router)
 app.use(router.routes())
 app.use(router.allowedMethods())
+app.use(require('koa-static')('./build'))
 
 module.exports = app

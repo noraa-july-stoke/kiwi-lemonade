@@ -1,0 +1,28 @@
+{
+  "name": "koa-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently — kill-others \"npm run backend\" \"npm run frontend\"",
+     "backend": "cd backend && npm run dev",
+     "frontend": "cd frontend && npm start",
+     "build": "cd frontend && npm run build"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noraa-july-stoke/kiwi-lemonade.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noraa-july-stoke/kiwi-lemonade/issues"
+  },
+  "homepage": "https://github.com/noraa-july-stoke/kiwi-lemonade#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

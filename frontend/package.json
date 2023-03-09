@@ -12,8 +12,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "PORT=5000 react-scripts start",
+    "build": "rm -rf ./build && react-scripts build && rm -rf ../backend/build && mv ./build ../backend/build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,5 +34,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:5001"
 }
