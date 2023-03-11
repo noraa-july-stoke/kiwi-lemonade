@@ -4,10 +4,10 @@ const Logger = require('koa-logger');
 const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
 const Helmet = require('koa-helmet');
-const mongoose = require('mongoose');
 const respond = require('koa-respond');
 const session = require("koa-session"); // Import authentication sessions
-
+const passport = require('koa-passport');
+const mongoose = require('mongoose');
 
 const app = new Koa();
 const router = new Router();
@@ -21,6 +21,16 @@ if (process.env.NODE_ENV === 'development') {
 app.use(cors({ credentials: true }));
 app.keys = [process.env.SECRET_KEY];
 app.use(session(app));
+
+
+//auth setup
+//get auth file functions;
+require('./auth');
+// Intialize passport authentication
+app.use(passport.initialize());
+// Initialize passport sessions
+app.use(passport.session())
+
 
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,

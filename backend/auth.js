@@ -1,8 +1,8 @@
 //This file sets up KoaJS and MongoDB;
 const passport = require('koa-passport');
 const bcrypt = require('bcryptjs')
-const LocalStrategy = require('passport-locals').Strategy;
-const User = require('./models/user');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/User');
 
 const options = {};
 
