@@ -22,7 +22,6 @@ app.use(cors({ credentials: true }));
 app.keys = [process.env.SECRET_KEY];
 app.use(session(app));
 
-
 //auth setup
 //get auth file functions;
 require('./auth');
@@ -30,7 +29,6 @@ require('./auth');
 app.use(passport.initialize());
 // Initialize passport sessions
 app.use(passport.session())
-
 
 mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,

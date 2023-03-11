@@ -15,17 +15,25 @@ passport.serializeUser((id, done) => {
     User.findById(id, (err, user) => {done(err,user)});
 });
 
+passport.deserializeUser((id, done) => {
+    User.findById(id)
+        .then(user => done(null, user))
+        .catch(err => done(err));
+});
+
+// Setup authentication
 passport.use(
     new LocalStrategy(options, (username, password, done) => {
-        User.findOne({username: username}, (err, user) => {
-            if (!user) return done(null, false);
-            if (comparePass(password, user.password)) {
-                return done(null, user);
-            }
-            else {
-                return done(null, false)
-            }
-        });
+        User.findOne({ username: username })
+            .then((user) => {
+                if (!user) return done(null, false);
+                if (comparePass(password, user.password)) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
+            })
+            .catch((err) => done(err));
 }));
 
 
