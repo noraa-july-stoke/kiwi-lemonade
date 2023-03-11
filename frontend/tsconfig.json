@@ -7,6 +7,9 @@
             "esnext"
         ],
         "jsx": "react",
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "allowJs": true,
         "sourceMap": true,
         "strict": true,
         "esModuleInterop": true,

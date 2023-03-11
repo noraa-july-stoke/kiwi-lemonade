@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 };
 
 app.use(cors({ credentials: true }));
-app.keys = [process.env.SECRET_KEY];
+app.keys = [process.env];
 app.use(session(app));
 
 //auth setup

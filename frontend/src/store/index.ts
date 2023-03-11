@@ -29,6 +29,7 @@ const rootReducer = combineReducers < RootState > ({
 let enhancer: any;
 
 if (process.env.NODE_ENV === 'production') {
+    // "thunk as ThunkMiddleware<RootState, AnyAction>" is telling typescript  what thunk is and the props it is receiving
     enhancer = applyMiddleware(thunk as ThunkMiddleware<RootState, AnyAction>);
 } else {
     const logger = require('redux-logger').default;
