@@ -1,9 +1,8 @@
 import React from "react";
+import GreetingComponent from "./components/GreetingComponent";
 
-function App() {
-  return (
-    <h1>Hello from App</h1>
-  );
-}
+const App = () => {
+  return <GreetingComponent greeting={"Hello"}/>
+};
 
 export default App;

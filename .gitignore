@@ -24,7 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-docker-compose.yml
 # dependencies
 /node_modules
 /.pnp
