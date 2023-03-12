@@ -1,32 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const GreetingComponent = ({greeting} : {greeting: string}) => {
+
+export const GreetingComponent = ({ greeting }: { greeting: string }) => {
     const navigate = useNavigate();
     // tells typescript to check for valid css properties.
-    const [style, setStyle] = useState<React.CSSProperties>({
+    const [style, ] = useState<React.CSSProperties>({
         height: "100vh",
         width: "100%",
-        backgroundColor: "limegreen",
-        color: "white",
+        background: "linear-gradient(to bottom, green, limegreen, palegoldenrod)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        gap: "2em",
         textAlign: "center",
-        cursor: "pointer"
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+        borderRadius: "10px",
     });
 
     const [buttonStyle,] = useState<React.CSSProperties>({
-        width: "100%",
-        backgroundColor: "limegreen",
         textAlign: "center",
-        cursor: "pointer",
-        border: "2px solid white",
+        border: "5px solid #5E4C8B",
         padding: "1em",
         borderRadius: "2em",
-        color: "white"
+        cursor: "pointer",
+        fontSize: "1.5em",
+        backgroundColor: "rgba(255,255,255,0)",
+        color: "#5E4C8B"
+
     });
+
+    const [h1Style, setH1Style] = useState<React.CSSProperties>({
+        fontWeight: "boldest",
+        marginTop: "2em",
+        border: "5px solid #5E4C8B",
+        padding: "1em",
+        borderRadius: "1em",
+        color: " #5E4C8B",
+        backgroundColor: "rgba(255,255,255,0)",
+        cursor: 'pointer'
+    });
+
 
     useEffect(() => {
 
@@ -36,13 +51,13 @@ export const GreetingComponent = ({greeting} : {greeting: string}) => {
         e.preventDefault();
         // Make a copy of the style object and modify the copy,
         // TSX doesn't like mutating the style object directly;
-        const newStyle = { ...style };
-        if (newStyle.color === "white") {
-            newStyle.color = "yellow";
+        const newStyle = { ...h1Style };
+        if (newStyle.color === "#5E4C8B") {
+            newStyle.color = "palegoldenrod";
         } else {
-            newStyle.color = "white";
+            newStyle.color = "#5E4C8B";
         }
-        setStyle(newStyle);
+        setH1Style(newStyle);
     };
 
     const loginClick = (e: any) => {
@@ -52,13 +67,12 @@ export const GreetingComponent = ({greeting} : {greeting: string}) => {
 
     return (
         <div style={style}>
-            <h1 onClick={greetingClick}>
-                {greeting} from kiwi lemonade! 🥝 🍋, <br />
+            <h1 onClick={greetingClick} style={h1Style}>
+                {greeting} from kiwi lemonade! 🥝 🍋 <br />
                 A starter template, built on: <br />
                 MongoDB Atlas, Koa, React, Node, Docker, TS & JS
             </h1>
-            <button onClick={loginClick} style={buttonStyle}>click to login to the application</button>
+            <button className="login-portal" onClick={loginClick} style={buttonStyle}>click to login to the application</button>
         </div>
     );
-
 }

@@ -2,8 +2,6 @@ left off @ create-react-app
 
 # general
 
-
-
 ## Key URLs
 ```javascript
 /api/auth/login // - Login a user. Send username and password using JSON in the request body.
