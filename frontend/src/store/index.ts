@@ -3,6 +3,8 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 // AnyAction type is an interface provided by the redux library in TypeScript that represents any action that can be dispatched to a Redux store.
 import { AnyAction } from 'redux'; //
 
+import sessionReducer from './session';
+
 // this tells Typescript not to get mad about the optional redux devtools
 // interface Window declaration ensures that TypeScript knows that this
 // property exists on the window object, and it also provides some type
@@ -15,15 +17,14 @@ declare global {
     }
 }
 
-// lays out shape of the states my reducers are creating so TS can track it
+// lays out shape of the states the educers are creating so TS can track it
 //and check for problems;
 interface RootState {
-
 
 }
 
 const rootReducer = combineReducers < RootState > ({
-
+    session: sessionReducer
 });
 
 let enhancer: any;

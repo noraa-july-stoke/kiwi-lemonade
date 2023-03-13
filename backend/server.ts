@@ -1,3 +1,5 @@
+import { Context } from "koa";
+
 const Koa = require('koa');
 const Router = require('koa-router');
 const Logger = require('koa-logger');
@@ -12,7 +14,7 @@ const serve = require('koa-static');
 const path = require('path');
 const koaSend = require('koa-send');
 
-const app = new Koa();
+const app: typeof Koa = new Koa();
 const router = new Router();
 
 app.use(Helmet());
@@ -36,7 +38,7 @@ app.use(bodyParser({
   enableTypes: ['json'],
   jsonLimit: '5mb',
   strict: true,
-  onerror: function (err, ctx) {
+  onerror: function (err: Error, ctx: Context) {
     ctx.throw('body parse error', 422);
   },
 }));
@@ -46,37 +48,10 @@ app.use(new CSRF());
 // API routes
 require('./routes')(router);
 
-if (process.env.NODE_ENV === 'production') {
-  // Serve the frontend's index.html file at the root route
-  router.get('/', async (ctx, next) => {
-    ctx.cookies.set('XSRF-TOKEN', ctx.csrf, {
-      httpOnly: false,
-      sameSite: 'strict',
-    });
-
-    await koaSend(ctx, 'index.html', {
-      root: path.join(__dirname, '..', 'frontend', 'build'),
-    });
-  });
-
-  // Serve the static assets in the frontend's build folder
-  app.use(serve(path.join(__dirname, '..', 'frontend', 'build')));
-
-  // Serve the frontend's index.html file at all other routes NOT starting with /api
-  router.get(/^(?!\/?api).*/, async (ctx, next) => {
-    ctx.cookies.set('XSRF-TOKEN', ctx.csrf, {
-      httpOnly: false,
-      sameSite: 'strict',
-    });
-
-    await koaSend(ctx, 'index.html', {
-      root: path.join(__dirname, '..', 'frontend', 'build'),
-    });
-  });
-}
+app.use(respond());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.use(respond());
+
 
 module.exports = app;

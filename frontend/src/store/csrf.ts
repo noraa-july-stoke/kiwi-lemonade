@@ -18,11 +18,13 @@ export const csrfFetch = async (url: string, options: RequestInit = {}) => {
         // "application/json", and set the "XSRF-TOKEN" header to the value of the
         // "XSRF-TOKEN" cookie
         (options.headers as { [key: string]: string })['Content-Type'] = (options.headers as { [key: string]: string })['Content-Type'] || 'application/json';
-        (options.headers as { [key: string]: any })['X-CSRFToken'] = Cookies.get('XSRF-TOKEN') || null;
+        (options.headers as { [key: string]: any })['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
     }
 
     // call the default window's fetch with the url and the options passed in
     const res: Response = await window.fetch(url, options);
+    const resData = await res.json()
+    console.log(resData)
 
     // if the response status code is 400 or above, then throw an error with the
     // error being the response
@@ -32,3 +34,7 @@ export const csrfFetch = async (url: string, options: RequestInit = {}) => {
     // next promise chain
     return res
 };
+
+export const restoreCSRF = () => {
+    return csrfFetch('/api/csrf/restore');
+}

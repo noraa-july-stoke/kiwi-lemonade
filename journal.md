@@ -1,5 +1,8 @@
 left off @ create-react-app
 
+i think my csrf is working but i might need to move those routes elsewhere.
+also i fucked up some stuff converting to typescript. this is gonna be fun debugging tomorrow!
+
 # general
 
 ## Key URLs
@@ -29,3 +32,8 @@ host ports :
 docker ports:
   fronend: 3000
   backend: 8080
+
+
+## ISSUES:
+
+CSRF restore is misbehaving.
