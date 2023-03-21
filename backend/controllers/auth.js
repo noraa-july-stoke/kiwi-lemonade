@@ -3,6 +3,8 @@ const passport = require('koa-passport');
 const bcrypt = require('bcryptjs');
 const { countDocuments } = require('../models/User');
 
+
+//!@#$ auth info here;
 // logs in user
 const login = async (ctx) => {
    return await passport.authenticate('local', (err, user, info, status) => {

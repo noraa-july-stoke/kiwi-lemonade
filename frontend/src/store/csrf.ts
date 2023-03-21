@@ -13,6 +13,8 @@ export const csrfFetch = async (url: string, options: RequestInit = {}) => {
   // set options.headers to an empty object if there is no headers
   options.headers = options.headers || {};
   let cookies: any = await Cookies.get("XSRF-TOKEN");
+
+
   //!@#$ CAN'T GET COOKIE HERE!!!!!
 
   if (options.method.toUpperCase() !== "GET") {
@@ -23,6 +25,9 @@ export const csrfFetch = async (url: string, options: RequestInit = {}) => {
       (options.headers as { [key: string]: string })["Content-Type"] ||
       "application/json";
     (options.headers as { [key: string]: any })["XSRF-Token"] = "OMG";
+
+    //!@#$ this is coming back null for some reason
+
     console.log(cookies);
     // await Cookies.get("XSRF-TOKEN");
   }

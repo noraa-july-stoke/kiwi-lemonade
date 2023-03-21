@@ -6,6 +6,8 @@ const User = require('./models/User');
 
 const options = {};
 
+//!@#$ passport auth info
+
 // Utility functions for user serialization
 passport.serializeUser((user, done) => {
     done(null, user.id);

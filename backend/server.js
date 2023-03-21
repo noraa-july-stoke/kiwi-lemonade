@@ -36,6 +36,7 @@ app.use(bodyParser({
   },
 }));
 
+
 app.use(CSRF({
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' && "Lax",
@@ -51,6 +52,8 @@ app.use(CSRF({
 
 // app.use(restoreCSRF);
 
+
+//!@#$ csrf injected here
 router.get("/api/csrf/restore", (ctx, next) => {
       ctx.cookies.set("XSRF-TOKEN", ctx.state._csrf);
       console.log(ctx.cookies.get("XSRF-TOKEN"));

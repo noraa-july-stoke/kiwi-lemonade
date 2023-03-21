@@ -6,6 +6,8 @@ router.get('/', (ctx, next) => {
     ctx.body = "Hello, auth!";
 });
 
+
+//!@#$ controllers for auth.
 router.post('/login', Ctrl.login);
 router.post('/signup', Ctrl.signup);
 router.get('/status', Ctrl.status);
