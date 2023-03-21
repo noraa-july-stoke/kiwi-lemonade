@@ -12,8 +12,7 @@ export const csrfFetch = async (url: string, options: RequestInit = {}) => {
   options.method = options.method || "GET";
   // set options.headers to an empty object if there is no headers
   options.headers = options.headers || {};
-  let cookies = await Cookies.get("XSRF-TOKEN");
-
+  let cookies: any = await Cookies.get("XSRF-TOKEN");
   //!@#$ CAN'T GET COOKIE HERE!!!!!
 
   if (options.method.toUpperCase() !== "GET") {
