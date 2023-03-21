@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const app = require('./server')
+const server = require('./server');
 
 const port = process.env.PORT || 8080;
 
@@ -13,8 +13,7 @@ mongoose.connect(process.env.DB_URL, {
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-
 db.once('open', function () {
     console.log('Mongoose connection opened successfully');
-    app.listen(port, () => console.log(`API server started on ${port}`));
+    server.listen(port, () => console.log(`API server started on ${port}`));
 });

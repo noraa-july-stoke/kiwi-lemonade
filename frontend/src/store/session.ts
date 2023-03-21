@@ -2,7 +2,6 @@ import { csrfFetch } from './csrf';
 const SET_USER: string = 'SET_USER';
 const REMOVE_USER: string = 'REMOVE_USER';
 
-
 interface SessionState {
     user: any; // Replace 'any' with the actual type of the user object
 }
@@ -29,9 +28,9 @@ export const thunkLogin = (user: any) => async (dispatch: any) => {
             password,
         }),
     });
-    const data = await response.json();
+    const data = await response?.json();
     console.log(data)
-    dispatch(actionSetUser(data.user));
+    dispatch(actionSetUser(data?.user));
     return response;
 };
 

@@ -7,25 +7,25 @@ const User = require('./models/User');
 const options = {};
 
 // Utility functions for user serialization
-passport.serializeUser((user: any, done: any) => {
+passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.serializeUser((id: number, done: any) => {
-    User.findById(id, (err: Error, user: any) => {done(err,user)});
+passport.serializeUser((id, done) => {
+    User.findById(id, (err, user) => {done(err,user)});
 });
 
-passport.deserializeUser((id: number, done: any) => {
+passport.deserializeUser((id, done) => {
     User.findById(id)
-        .then((user: any) => done(null, user))
-        .catch((err: Error) => done(err));
+        .then(user => done(null, user))
+        .catch(err => done(err));
 });
 
 // Setup authentication
 passport.use(
-    new LocalStrategy(options, (username: string, password: string, done: any ) => {
+    new LocalStrategy(options, (username, password, done) => {
         User.findOne({ username: username })
-            .then((user: any) => {
+            .then((user) => {
                 if (!user) return done(null, false);
                 if (comparePass(password, user.password)) {
                     return done(null, user);
@@ -33,7 +33,7 @@ passport.use(
                     return done(null, false);
                 }
             })
-            .catch((err: {Error: any}) => done(err));
+            .catch((err) => done(err));
 }));
 
 

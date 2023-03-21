@@ -5,13 +5,16 @@ const { countDocuments } = require('../models/User');
 
 // logs in user
 const login = async (ctx) => {
-    return passport.authenticate('local', (err, user, info, status) => {
+   return await passport.authenticate('local', (err, user, info, status) => {
         if (user) {
             ctx.login(user);
             ctx.redirect('/api/auth/status');
+            ctx.body = ctx.cookies;
+
         } else {
             ctx.status = 400;
             ctx.body = {status: "error"}
+            // ctx.body = ctx.cookies;
         }
     })(ctx);
 }
